@@ -2,7 +2,7 @@
 menu:
   首页: /
   # 友链: /links
-  关于: /about
+  # 关于: /about
 
 # 主页banner图
 banner: https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg
