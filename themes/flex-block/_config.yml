@@ -13,7 +13,7 @@ notice: flex-block主题部分重构，详情查看https://github.com/miiiku/fle
 # 作者信息
 author:
   name: x1a0zheng
-  avatar: https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&r=g&d=retro
+  avatar: /avatar.png
   description: 贵在坚持
 
 toc:
@@ -81,5 +81,5 @@ social_icon:
     ins:
     zhihu:
     weibo:
-    github: https://github.com/miiiku/
-    twitter: https://twitter.com/guanquanhong
+    github: https://github.com/x1a0zheng
+    twitter:
