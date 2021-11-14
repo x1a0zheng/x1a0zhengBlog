@@ -28,8 +28,8 @@ comments:
   # You can get your appid and appkey from https://leancloud.cn
   # 这里appId和appKey一定一定要改成自己的，没有的话去https://leancloud.cn这个网站注册创建一个
   valine:
-    appId:
-    appKey:
+    appId: 6LsThTzf00tpHLUBVkrvuXE4-gzGzoHsz
+    appKey: MqQm6styhHk5Mh6tnzV07NoI
     avatar: mm
     placeholder: 随便说点什么叭～
     notify: true
