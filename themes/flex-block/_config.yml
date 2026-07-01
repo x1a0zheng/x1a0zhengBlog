@@ -1,20 +1,21 @@
 # Header
 menu:
   首页: /
+  个人简历: /resume
   # 友链: /links
   # 关于: /about
 
 # 主页banner图
-banner: https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg
+banner: /home_banner.jpg
 
 # 站点通知信息
-notice: flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block
+notice: 
 
 # 作者信息
 author:
   name: x1a0zheng
   avatar: /avatar.png
-  description: 贵在坚持
+  description: 拥抱变化
 
 toc:
   max_depth: 3 # 生成 TOC 的最大深度
