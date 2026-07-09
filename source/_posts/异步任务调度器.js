@@ -9,7 +9,6 @@
 // ============================================================
 function limitConcurrencyBuggy(tasks, limit) {
     return new Promise((resolve, reject) => {
-        const queue = [...tasks];
         if (tasks.length === 0) {
             resolve([]);
             return;
@@ -21,7 +20,7 @@ function limitConcurrencyBuggy(tasks, limit) {
         const resultRes = (res, index) => {
             resCot++;
             result[index] = res;
-            const task = queue.shift();
+            const task = tasks[index];
             const currentIndex = queueIndex++;
             if (task) {
                 task().then((re) => {
@@ -35,7 +34,7 @@ function limitConcurrencyBuggy(tasks, limit) {
         }
 
         for (let i = 0; i < limit && i < tasks.length; i++) {
-            const task = queue.shift();
+            const task = tasks[i];
             queueIndex++;
             task().then((re) => {
                 const currentIndex = i
