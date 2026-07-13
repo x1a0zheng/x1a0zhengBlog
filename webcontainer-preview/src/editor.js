@@ -1,4 +1,8 @@
-import * as monaco from 'monaco-editor';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import 'monaco-editor/esm/vs/language/json/monaco.contribution';
+import 'monaco-editor/esm/vs/language/css/monaco.contribution';
+import 'monaco-editor/esm/vs/language/html/monaco.contribution';
+import 'monaco-editor/esm/vs/language/typescript/monaco.contribution';
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
@@ -19,7 +23,8 @@ function languageOf(path) {
   if (path.endsWith('.json')) return 'json';
   if (path.endsWith('.html')) return 'html';
   if (path.endsWith('.css')) return 'css';
-  if (path.endsWith('.md')) return 'markdown';
+  // markdown contribution isn't bundled by default here — fall back to plaintext
+  if (path.endsWith('.md')) return 'plaintext';
   if (/\.(t|j)sx?$/.test(path)) return 'javascript';
   return 'plaintext';
 }

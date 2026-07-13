@@ -9,7 +9,7 @@ const crossOriginHeaders = {
 export default defineConfig({
   server: { headers: crossOriginHeaders },
   preview: { headers: crossOriginHeaders },
-  worker: { format: 'es' },
+  worker: { format: 'esm'},
   optimizeDeps: {
     include: [
       'monaco-editor/esm/vs/language/json/json.worker',
