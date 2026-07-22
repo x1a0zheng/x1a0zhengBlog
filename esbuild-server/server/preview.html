@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Preview</title>
+  <style>
+    html, body, #root { margin: 0; height: 100%; }
+    #build-error {
+      position: fixed; inset: 0; background: #1e1e1e; color: #f48771;
+      font: 13px/1.5 Consolas, monospace; padding: 20px; white-space: pre-wrap;
+      overflow: auto; display: none; z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <pre id="build-error"></pre>
+  <script>
+    const SESSION_ID = '__SESSION_ID__';
+    const errBox = document.getElementById('build-error');
+    let cacheBust = 0;
+    let cssLink = null;
+
+    async function loadBundle(assets) {
+      errBox.style.display = 'none';
+      document.getElementById('root').innerHTML = '';
+      const v = ++cacheBust;
+
+      // 若上一版有 css,先移除
+      if (cssLink) { cssLink.remove(); cssLink = null; }
+
+      // 若产物含 bundle.css,插入 <link>
+      const hasCss = !assets || assets.includes('bundle.css');
+      if (hasCss) {
+        cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = `/session/${SESSION_ID}/asset/bundle.css?v=${v}`;
+        // 加载失败也不阻塞 JS
+        cssLink.onerror = () => { cssLink?.remove(); cssLink = null; };
+        document.head.appendChild(cssLink);
+      }
+
+      const jsUrl = `/session/${SESSION_ID}/asset/bundle.js?v=${v}`;
+      try {
+        await import(jsUrl);
+      } catch (e) {
+        showError(String(e && e.stack || e));
+      }
+    }
+
+    function showError(text) { errBox.textContent = text; errBox.style.display = 'block'; }
+
+    window.addEventListener('message', (ev) => {
+      const msg = ev.data || {};
+      if (msg.type === 'reload') loadBundle(msg.assets);
+      else if (msg.type === 'error') showError(msg.text);
+    });
+
+    loadBundle();
+  </script>
+</body>
+</html>
