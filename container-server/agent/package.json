@@ -1,0 +1,9 @@
+{
+  "name": "wc-agent",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
